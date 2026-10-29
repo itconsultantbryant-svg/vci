@@ -4,13 +4,20 @@ const path = require('node:path');
 const root = __dirname;
 const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpeg':'image/jpeg','.jpg':'image/jpeg','.xml':'application/xml','.txt':'text/plain','.ico':'image/x-icon'};
 const apiRoutes = {
-  '/api/contact':'lib/api/contact.js','/api/subscribe':'lib/api/subscribe.js','/api/content':'lib/api/content.js','/api/track':'lib/api/track.js',
-  '/api/admin/login':'lib/api/admin/login.js','/api/admin/logout':'lib/api/admin/logout.js','/api/admin/dashboard':'lib/api/admin/dashboard.js','/api/admin/content':'lib/api/admin/content.js','/api/admin/submissions':'lib/api/admin/submissions.js'
+  '/api/contact': require('./lib/api/contact'),
+  '/api/subscribe': require('./lib/api/subscribe'),
+  '/api/content': require('./lib/api/content'),
+  '/api/track': require('./lib/api/track'),
+  '/api/admin/login': require('./lib/api/admin/login'),
+  '/api/admin/logout': require('./lib/api/admin/logout'),
+  '/api/admin/dashboard': require('./lib/api/admin/dashboard'),
+  '/api/admin/content': require('./lib/api/admin/content'),
+  '/api/admin/submissions': require('./lib/api/admin/submissions')
 };
 function apiResponse(res) { res.status = code => { res.statusCode=code; return res; }; res.json = data => { res.setHeader('Content-Type','application/json; charset=utf-8'); res.end(JSON.stringify(data)); }; return res; }
 module.exports = async (req,res) => {
   const clean = decodeURIComponent((req.url || '/').split('?')[0]);
-  if(apiRoutes[clean]) { try { return await require(path.join(root,apiRoutes[clean]))(req,apiResponse(res)); } catch(error) { console.error(error); return apiResponse(res).status(500).json({error:'Server error.'}); } }
+  if(apiRoutes[clean]) { try { return await apiRoutes[clean](req,apiResponse(res)); } catch(error) { console.error(error); return apiResponse(res).status(500).json({error:'Server error.'}); } }
   const requested = clean === '/' ? 'index.html' : clean.replace(/^\//,'');
   let file = path.resolve(root, requested);
   if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) file = path.join(root,'index.html');
