@@ -66,14 +66,7 @@
   ],
   "functions": {
     "index.js": {
-      "includeFiles": [
-        "index.html",
-        "client.js",
-        "styles.css",
-        "assets/**",
-        "api/**",
-        "db/schema.sql"
-      ]
+      "includeFiles": "{index.html,client.js,styles.css,assets/**,api/**,db/schema.sql}"
     }
   }
 }
