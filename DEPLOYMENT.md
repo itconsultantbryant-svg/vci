@@ -30,6 +30,7 @@ vercel login
 vercel link
 vercel env add DATABASE_URL production
 vercel env add ADMIN_SESSION_SECRET production
+vercel env add ADMIN_USERNAME production
 vercel env add ADMIN_PASSWORD production
 vercel --prod
 ```
@@ -42,6 +43,7 @@ Add the same variables to Preview if preview deployments should use a separate N
 | --- | --- |
 | `DATABASE_URL` | Neon pooled Postgres connection string, including `sslmode=require` |
 | `ADMIN_SESSION_SECRET` | Random HMAC secret, e.g. `openssl rand -base64 32` |
+| `ADMIN_USERNAME` | Dashboard username, e.g. `admin` |
 | `ADMIN_PASSWORD` | Strong unique dashboard password |
 
 Never use `NEXT_PUBLIC_` for these values. They must only be stored as server-side Vercel environment variables.
