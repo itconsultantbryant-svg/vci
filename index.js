@@ -4,8 +4,8 @@ const path = require('node:path');
 const root = __dirname;
 const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpeg':'image/jpeg','.jpg':'image/jpeg','.xml':'application/xml','.txt':'text/plain','.ico':'image/x-icon'};
 const apiRoutes = {
-  '/api/contact':'api/contact.js','/api/subscribe':'api/subscribe.js','/api/content':'api/content.js','/api/track':'api/track.js',
-  '/api/admin/login':'api/admin/login.js','/api/admin/logout':'api/admin/logout.js','/api/admin/dashboard':'api/admin/dashboard.js','/api/admin/content':'api/admin/content.js','/api/admin/submissions':'api/admin/submissions.js'
+  '/api/contact':'lib/api/contact.js','/api/subscribe':'lib/api/subscribe.js','/api/content':'lib/api/content.js','/api/track':'lib/api/track.js',
+  '/api/admin/login':'lib/api/admin/login.js','/api/admin/logout':'lib/api/admin/logout.js','/api/admin/dashboard':'lib/api/admin/dashboard.js','/api/admin/content':'lib/api/admin/content.js','/api/admin/submissions':'lib/api/admin/submissions.js'
 };
 function apiResponse(res) { res.status = code => { res.statusCode=code; return res; }; res.json = data => { res.setHeader('Content-Type','application/json; charset=utf-8'); res.end(JSON.stringify(data)); }; return res; }
 module.exports = async (req,res) => {
