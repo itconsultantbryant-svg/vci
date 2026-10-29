@@ -4,13 +4,14 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node scripts/dev-server.js",
-    "check": "node --check client.js && node --check scripts/dev-server.js"
+    "check": "node --check public/client.js && node --check index.js && node --check scripts/dev-server.js"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
+    "@vercel/blob": "^2.8.2",
     "dotenv": "^18.0.9"
   },
   "main": "index.js"

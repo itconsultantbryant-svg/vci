@@ -34,3 +34,12 @@ INSERT INTO site_content (content_key, content_value) VALUES
   ('about_intro', '"We are a Liberia-based consultancy offering locally grounded support in strategy, communication, innovation, monitoring and evaluation, and technology."'::jsonb),
   ('contact_intro_title', '"Let’s discuss what is next."'::jsonb)
 ON CONFLICT (content_key) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS media_assets (
+  id BIGSERIAL PRIMARY KEY,
+  file_name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  content_type TEXT NOT NULL,
+  size_bytes INTEGER NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

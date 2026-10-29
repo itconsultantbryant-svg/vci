@@ -13,7 +13,9 @@ const apiRoutes = {
   '/api/admin/logout': require('./lib/api/admin/logout'),
   '/api/admin/dashboard': require('./lib/api/admin/dashboard'),
   '/api/admin/content': require('./lib/api/admin/content'),
-  '/api/admin/submissions': require('./lib/api/admin/submissions')
+  '/api/admin/submissions': require('./lib/api/admin/submissions'),
+  '/api/admin/upload': require('./lib/api/admin/upload'),
+  '/api/admin/media': require('./lib/api/admin/media')
 };
 function apiResponse(res) { res.status = code => { res.statusCode=code; return res; }; res.json = data => { res.setHeader('Content-Type','application/json; charset=utf-8'); res.end(JSON.stringify(data)); }; return res; }
 module.exports = async (req,res) => {
