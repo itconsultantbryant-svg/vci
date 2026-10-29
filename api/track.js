@@ -1,0 +1,2 @@
+const { sql, send, readBody } = require('./_db');
+module.exports = async (req,res) => { if(req.method !== 'POST') return send(res,405,{error:'Method not allowed.'}); try { const b=await readBody(req); const path=String(b.path||'/').slice(0,200); const visitor=String(b.visitor||'anonymous').slice(0,80); await sql()`INSERT INTO page_views (path, visitor_id) VALUES (${path}, ${visitor})`; return send(res,201,{ok:true}); } catch(e){return send(res,202,{ok:false});} };
