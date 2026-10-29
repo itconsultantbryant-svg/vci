@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js",
-    "check": "node --check app.js && node --check server.js"
+    "start": "node scripts/dev-server.js",
+    "check": "node --check client.js && node --check scripts/dev-server.js"
   },
   "engines": {
     "node": ">=18"
